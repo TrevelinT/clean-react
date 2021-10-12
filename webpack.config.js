@@ -23,20 +23,21 @@ module.exports = {
     }, {
       test: /\.scss/,
       use: [{
-        loader: 'style-loader',
+        loader: 'style-loader'
       }, {
         loader: 'css-loader',
         options: {
           modules: true
         }
       }, {
-        loader: 'sass-loader',
+        loader: 'sass-loader'
       }]
     }]
   },
   devServer: {
-    contentBase: './public',
-    writeToDisk: true,
+    devMiddleware: {
+      writeToDisk: true
+    },
     historyApiFallback: true
   },
   externals: {
