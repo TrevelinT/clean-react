@@ -1,7 +1,6 @@
 import * as FormHelper from '../support/form-helper'
 import * as Http from '../support/login-mocks'
 import faker from 'faker'
-import { mockOk } from '../support/http-mocks'
 
 const populateFields = (): void => {
   cy.getByTestId('email').focus().type(faker.internet.email())
@@ -71,7 +70,7 @@ describe('Login', () => {
     cy.getByTestId('main-error').should('not.exist')
     cy.getByTestId('spinner').should('not.exist')
     FormHelper.testUrl('/')
-    FormHelper.testLocalStorageItem('accessToken')
+    FormHelper.testLocalStorageItem('account')
   })
 
   it('Should prevent multiple submits', () => {
