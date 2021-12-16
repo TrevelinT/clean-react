@@ -1,6 +1,5 @@
 import { LocalUpdateCurrentAccount } from './local-update-current-account'
 import { SetStorageMock } from '@/data/test'
-import faker from 'faker'
 import { UnexpectedError } from '@/domain/errors'
 import { mockAccountModel } from '@/domain/test'
 
@@ -29,7 +28,7 @@ describe('LocalUpdateCurrentAccount', () => {
 
   test('Should throw if SetStorage throws', async () => {
     const { sut, setStorageMock } = makeSut()
-    jest.spyOn(setStorageMock, 'set').mockRejectedValueOnce(new Error())
+    jest.spyOn(setStorageMock, 'set').mockImplementationOnce(() => { throw new Error() })
     const promise = sut.save(mockAccountModel())
     await expect(promise).rejects.toThrow(new Error())
   })
